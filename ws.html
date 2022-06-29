@@ -1,0 +1,484 @@
+<html>
+
+<head>
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
+    <title>WS test</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+</head>
+
+<body class="p-4 container-fluid" onload="ws_init()">
+    <font face="sans-serif">
+        <script src="crc32.js"></script>
+        <script src="ws_client.js"></script>
+        <section>
+            <div class="portlet">
+                <div class="form-inline">
+                    <div>
+                        <label class="float-label-active" for="host">IP адрес</label>
+                        <input class="form-control mb-2 mr-sm-2 ip_address" id="host" type="text" />
+                    </div>
+                    <div>
+                        <label class="float-label-active" for="key">Key</label>
+                        <input class="form-control mb-2 mr-sm-2" id="key" type="text"/>
+                    </div>
+                    <div class="mb-2">
+                        <button class="btn btn-lg btn-primary mr-1" id="btnConnect" onclick="ws_connect()">
+                            Connect
+                        </button>
+                        <button class="btn btn-lg btn-danger" id="btnDisconnect" onclick="ws_disconnect()">
+                            Disconnect
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <div class="row form-row">
+                            <div class="col-md-5">
+                                <div class="form-grop">
+                                    <label class="float-label-active" for="devId">Device ID</label>
+                                    <input type="text" class="form-control" id="devId" readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-grop">
+                                    <label class="float-label-active" for="devType">Type</label>
+                                    <input type="text" class="form-control" id="devType" readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-grop">
+                                    <label class="float-label-active" for="devVersion">Version</label>
+                                    <input type="text" class="form-control" id="devVersion" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-row">
+                            <div class="col-md-5">
+                                <div class="form-grop">
+                                    <label class="float-label-active" for="healthRssi">RSSI</label>
+                                    <input type="text" class="form-control" id="healthRssi" readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-grop">
+                                    <label class="float-label-active" for="healthNetworkQuality">Network quality</label>
+                                    <input type="text" class="form-control" id="healthNetworkQuality" readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-grop">
+                                    <label class="float-label-active" for="healthMemory">Memory</label>
+                                    <input type="text" class="form-control" id="healthMemory" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-inline">
+                <div class="mb-2">
+                    <button class="btn btn-lg btn-secondary mr-1" id="btnRelay0" onclick="wsSwitchRelayState(0)">
+                        Реле 1
+                    </button>
+                    <button class="btn btn-lg btn-secondary mr-1" id="btnRelay1" onclick="wsSwitchRelayState(1)">
+                        Реле 2
+                    </button>
+                    <button class="btn btn-lg btn-secondary mr-1" id="btnRelay2" onclick="wsSwitchRelayState(2)">
+                        Реле 3
+                    </button>
+                    <button class="btn btn-lg btn-secondary mr-1" id="btnRelay3" onclick="wsSwitchRelayState(3)">
+                        Реле 4
+                    </button>
+                    <button class="btn btn-lg btn-secondary mr-1" id="btnLight0" onclick="wsSwitchLampState(0)">
+                        Лампа 1
+                    </button>
+                    </div>
+                </div>
+                <div class="form-inline">
+                     <div class="mt-2">
+                           <input type="checkbox" id="chbReconnect">Reconnect</input>
+                          <input type="checkbox" id="chbRestoreCycle1" style="margin-left: 1em">Restore cycle 1</input>
+                          <input type="checkbox" id="chbRestoreCycle2" style="margin-left: 1em">Restore cycle 2</input>
+                    </div>
+                 </div>
+                
+            </div>
+            <div class="portlet">
+                 <div class="form-inline">
+                        <div class="mt-2">
+                            <button class="btn btn-lg btn-primary mr-1" id="wsDownloadLog" onclick="wsDownloadLog()" style="float: right;">Download log</button>
+                            <button class="btn btn-lg btn-primary mr-1" id="wsDownloadFullDump" onclick="wsDownloadFullDump()" style="float: right; margin-right: 20px;">Download dump</button>
+                            <button class="btn btn-lg btn-primary mr-1" id="wsOldDownloadFullDump" onclick="wsOldDownloadFullDump()" style="margin-right: 20px; float: right;">Download dump (old)</button>
+                        </div>
+                    </div>
+            </div>
+            
+            <div class="portlet"> 
+                    <!-- <button id="btnRelay0" onclick="wsSwitchRelayState(0)" style="margin-left: 10px">Реле 1</button>
+                    <button id="btnRelay1" onclick="wsSwitchRelayState(1)">Реле 2</button>
+                    <button id="btnRelay2" onclick="wsSwitchRelayState(2)">Реле 3</button>
+                    <button id="btnRelay3" onclick="wsSwitchRelayState(3)">Реле 4</button> -->
+                    <!-- <button id="btnLight0" onclick="wsSwitchLampState(0)" style="margin-left: 10px">Лампа 1</button> -->
+                    
+                    <details>
+                        <summary>Циклы</summary>
+                        <br>
+                        <button class="btn btn-lg btn-secondary mr-1" id="btnRelayCycle0" onclick="wsRelayCycle(0)" style="margin-left: 10px">РЦикл 1</button>
+                        <button class="btn btn-lg btn-secondary mr-1" id="btnRelayCycle1" onclick="wsRelayCycle(1)">РЦикл 2</button>
+                        <button class="btn btn-lg btn-secondary mr-1" id="btnRelayCycle2" onclick="wsRelayCycle(2)">РЦикл 3</button>
+                        <button class="btn btn-lg btn-secondary mr-1" id="btnRelayCycle3" onclick="wsRelayCycle(3)">РЦикл 4</button>
+                        <button class="btn btn-lg btn-secondary mr-1" id="btnLightCycle0" onclick="wsLightCycle(0)">ЛЦикл 1</button>
+                    </details>
+            </div>
+            <details class="portlet">
+                <summary>Обновление ПО</summary>
+                <br>
+                <div class="card-body">
+                    <a style="margin-right: 10px">Обновление ПО</a>
+                    <input id="inpSwFileName" type="file" accept=".bin" onchange="fileSwOnChange(this)">
+                    <button id="btnUpdateDeviceSw" onclick="updateDeviceSw()" disabled>Обновить</button>
+                    <progress id="prgUpdateDeviceSw" max="100" value="0" style="margin-left: 20px"></progress>
+                    <div style="margin-top: 3px; font-size: 10pt; font-style: italic">
+                        <a class="small text-muted">To upload, start chrome with the command:</a>
+                        <a class="small text-muted" style="font-weight: bold;"> google-chrome --disable-web-security --user-data-dir</a>
+                    </div>
+                </div>
+                <div style="margin: 10px;padding: 3px;border: 1px;border-color: #9E9E9E;background-color: beige;border-style: solid;">
+                    <a style="margin-right: 10px">Замена клиентского сертификата</a>
+                    <input id="inpClSertFileName" type="file" accept=".bin" onchange="fileClSertOnChange(this)">
+                    <button id="btnUpdateDeviceClSert" onclick="updateDeviceClSert()" disabled>Заменить</button>
+                    <progress id="prgUpdateDeviceClSert" max="100" value="0" style="margin-left: 20px" />
+                </div>
+                <div style="margin: 10px;padding: 3px;border: 1px;border-color: #9E9E9E;background-color: beige;border-style: solid;">
+                    <a style="margin-right: 10px">Замена сертификата сервера</a>
+                    <input id="inpCASertFileName" type="file" accept=".bin" onchange="fileCASertOnChange(this)">
+                    <button id="btnUpdateDeviceCASert" onclick="updateDeviceCASert()" disabled>Заменить</button>
+                    <progress id="prgUpdateDeviceCASert" max="100" value="0" style="margin-left: 20px" />
+                </div>
+            </details>
+            <details class="portlet">
+                <summary>Старое</summary>
+                <br>
+                <div>
+                    <div class="art1">STPM:
+                    </div>  
+                    <div class="row">
+                        <div class="col-md">
+                            <div class="row form-row">
+                                <div class="col-md-3">
+                                    <div class="form-grop">
+                                        <label class="float-label-active" for="stpm_U">U</label>
+                                        <input class="form-control" id="stpm_U" readonly />
+                    
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-grop">
+                                        <label class="float-label-active" for="stpm_I">I</label>
+                                        <input class="form-control" id="stpm_I" readonly />
+                    
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-grop">
+                                        <label class="float-label-active" for="stpm_Pact">Pact</label>
+                                        <input class="form-control" id="stpm_Pact" readonly />
+                    
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-grop">
+                                        <label class="float-label-active" for="stpm_Papp">Papp</label>
+                                        <input class="form-control" id="stpm_Papp" readonly />
+                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <hr />
+                <div>
+                    <div class="art2">STPM Calibration:
+                    </div>
+                    
+                        <div class="row form-row">
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="stpm_OffsetU">offset U</label>
+                                <input class="float-input form-control" id="stpm_OffsetU" value="0.0" />
+                            </div>
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="stpm_FactorU">factor U</label>
+                                <input class="float-input form-control" id="stpm_FactorU" value="1.0" />
+                            </div>
+
+                            <button class="btn btn-lg btn-primary ml-1" id="btnSendKU" onclick="ws_send_kU()">Set</button>
+                        </div>
+                    
+                        <div class="row form-row">
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="stpm_OffsetI">offset I</label>
+                                <input class="float-input form-control" id="stpm_OffsetI" value="0.0" />
+                            </div>
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="stpm_FactorI">factor I</label>
+                                <input class="float-input form-control" id="stpm_FactorI" value="1.0" />
+                            </div>
+
+                            <button class="btn btn-lg btn-primary ml-1" id="btnSendKI" onclick="ws_send_kI()">Set</button>
+                        </div>
+                    
+                        <div class="row form-row">
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="stpm_OffsetP">offset P</label>
+                                <input class="float-input form-control" id="stpm_OffsetP" value="0.0" />
+                            </div>
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="stpm_FactorP">factor P</label>
+                                <input class="float-input form-control" id="stpm_FactorP" value="1.0" />
+                            </div>
+
+                            <button class="btn btn-lg btn-primary ml-1" id="btnSendKP" onclick="ws_send_kP()">Set</button>
+                        </div>
+                    
+                </div>
+                <hr />
+                <div>
+                    RegUrl:
+                    <input id="cloudRegUrl" type="text" style="width:400px" readonly=""/>
+                    WsUrl:
+                    <input id="cloudWsUrl" type="text" style="width:400px" readonly=""/> 
+                    <input id="cloudOnline" type="text" readonly=""/> <br/><br/>
+                    <button id="btnRegUrlToDevel" onclick="wsRegUrlToDevel()">To DEVEL</button>
+                    <button id="btnRegUrlToStaging" onclick="wsRegUrlToStaging()">To STAGING</button>
+                    <button id="btnRegUrlToNewStage" onclick="wsRegUrlToNewStage()">To New STAGING</button>
+                    <button id="btnRegUrlToProd" onclick="wsRegUrlToProd()">To PROD</button>
+                    
+                    <hr>
+                    Cloud Server:
+                    <input id="cloudServer" />
+                    <button id="btnSendCloudServer" onclick="ws_send_cloudServer()">Set</button>Time Zone:
+                    <input class="inputWidth" id="timeZone" />
+                    <button id="btnSendTimeZone" onclick="ws_send_timeZone()">Set</button>
+                </div>
+                <hr />
+                <div>
+                    <div class="art art3">Relay Advanced:
+                    </div>
+                    <a style="margin-left: 10px">mode</a>
+                    <select id="relayAdvancedMode">
+                        <option selected value="0">none</option>
+                        <option value="1">WATER_GUARD</option>
+                        <option value="2">ROLLER_SHUTTER</option>
+                    </select>
+                    <button onclick="wsChangeRelayAdvancedMode()" style="margin-left: 30px">Change</button>
+                    <a style="margin-left: 10px">posit</a>
+                    <input id="rollerShutterGetPosit" type="number" style="width:60px" value="0" readonly />
+                    <input id="rollerShutterSetPosit" type="number" style="width:60px" value="0" />
+                    <button onclick="wsRollerShutterSetPosit()" style="margin-left: 30px">Set</button>
+                </div>
+                <hr />
+                <div>
+                    <div class="art art5">LAMP RGB Bright:
+                    </div>
+                    <div>
+                        Brightness:<input class="inputWidth" id="lamp_Level" />%<button id="btnSendlamp" onclick="ws_send_lamp()">Set</button>
+                        White:<input class="inputWidth" id="rgb_LevelW" />%<button id="btnSendRGBW" onclick="ws_send_rgbW()">Set</button>
+                    </div>
+                    <hr />
+                    <div class="art art5">LAMP RGB Color:
+                    </div>
+                    <div>
+                        Red:<input class="inputWidth" id="rgb_LevelR" />%<button id="btnSendRGBR" onclick="ws_send_rgbR()">Set</button>
+                        Green:<input class="inputWidth" id="rgb_LevelG" />%<button id="btnSendRGBG" onclick="ws_send_rgbG()">Set</button>
+                        Blue:<input class="inputWidth" id="rgb_LevelB" />%<button id="btnSendRGBB" onclick="ws_send_rgbB()">Set</button>
+                    </div>
+                    <hr />
+                    <div>
+                        <div class="art art8">RF:
+                        </div>
+                        Seen ID: <input id="rfID" type="text" readonly />
+                        <button id="btn_rfDiscovery" onclick="ws_rfDiscovery()">Discovery</button>
+                    </div>
+                    <hr />
+                    <div>
+                        <div class="art art8">Add action:
+                        </div>
+                        <a style="margin-left: 10px">#</a>
+                        <input id="rfActionNum" type="number" style="width:30px" value="0" />
+                        <a style="margin-left: 10px">rf id</a>
+                        <input id="rfActionId" type="number" style="width:70px" value="0" />
+                        <a style="margin-left: 10px">type</a>
+                        <select id="rfActionType">
+                            <option selected value="0">nothing</option>
+                            <option value="1">on</option>
+                            <option value="2">off</option>
+                            <option value="3">toggle</option>
+                            <option value="4">on then turn off</option>
+                            <option value="5">off then turn on</option>
+                            <option value="6">door mode</option>
+                            <option value="7">ventilation mode</option>
+                            <option value="8">rgb indicator</option>
+                            <option value="9">on when greater PARAM1</option>
+                            <option value="10">on when less PARAM1</option>
+                            <option value="11">on when in PARAM1 and PARAM2</option>
+                            <option value="12">off when greater PARAM1</option>
+                            <option value="13">off when less PARAM1</option>
+                            <option value="14">of when in PARAM1 and PARAM2</option>
+                            <option value="20">SUPPORT_32BIT_SENSORS</option>
+                        </select>
+                        <a style="margin-left: 10px">channel</a>
+                        <input id="rfActionChannel" type="number" style="width:40px" value="0" />
+                        <a style="margin-left: 10px">param1</a>
+                        <input id="rfActionParam1" type="number" style="width:70px" value="0" />
+                        <a style="margin-left: 10px">param2</a>
+                        <input id="rfActionParam2" type="number" style="width:70px" value="0" />
+                        <button id="btnCreateAction" onclick="wsCreateRfAction()" style="margin-left: 30px">Create</button>
+                    </div>
+                    <hr />
+                    <div>
+                        <div class="art art8">rgb indicator:
+                        </div>
+                        <a style="margin-left: 10px">red(0-15)</a>
+                        <input id="rfActionParam2Red" type="number" style="width:70px" value="0" />
+                        <a style="margin-left: 10px">green(0-15)</a>
+                        <input id="rfActionParam2Green" type="number" style="width:70px" value="0" />
+                        <a style="margin-left: 10px">blue(0-15)</a>
+                        <input id="rfActionParam2Blue" type="number" style="width:70px" value="0" />
+                        <a style="margin-left: 10px">period(step 0.5s)</a>
+                        <input id="rfActionParam1Period" type="number" style="width:70px" value="0" />
+                        <a style="margin-left: 10px">duty(0-63)</a>
+                        <input id="rfActionParam1Duty" type="number" style="width:70px" value="0" />
+                        <button id="btnCreateActionRgb" onclick="wsCreateRfActionRgb()" style="margin-left: 30px">Copy to params</button>
+                    </div>
+                    <hr />
+                    <button id="btnBreezerOn" onclick="ws_send_data('&quot;stick:type&quot;:&quot;breezer3c&quot;');">Breezer ON</button>
+                    <button id="btnBreezerOf" onclick="ws_send_data('&quot;stick:type&quot;:&quot;none&quot;');">Breezer OFF</button>
+                </div>
+            </details>
+            <details class="portlet" open>
+                <summary>Функционал 868</summary>
+                <br>
+                Настройки 868:
+                Канал <input class="inputWidth" id="channel868" /> <button id="btnchannel868" onclick="ws_send_channel868()"> Set</button>
+                Ключи <input class="inputWidth" id="key868_0" /> <input class="inputWidth" id="key868_1" /> <input class="inputWidth" id="key868_2" /> <input class="inputWidth" id="key868_3" /> <button id="btnkey868" onclick="ws_send_key868()">Set</button>
+                <hr />
+                <div>Добавление 868:
+                    <button id="btn_rfDiscovery868" onclick="ws_rfDiscovery868()">Discovery868</button>
+                    Seen. Тип: <input id="rfID868SeenType" type="text" readonly="" />
+                    ID: <input id="rfID868" type="text" readonly />
+                    <button id="btnAddRf868" onclick="ws_send_AddRf868()">Add</button>
+                    <br>
+                    <br>
+                    Статус добавления: <input id="rfID868_addstatus" type="text" readonly />
+                </div>
+                <hr />
+                Команды для 868. ID: <input id="rfID868СCommandId" type="text" value="" />
+                <br /><br />
+                ШК:
+                <button id="btn_shk_open" onclick="ws_commandRf868(8, 1)">Закрыть</button>
+                <button id="btn_shk_lock" onclick="ws_commandRf868(8, 2)">Открыть</button>
+                <button id="btn_shk_clean" onclick="ws_commandRf868(8, 3)">Прочистить</button>
+                <button id="btn_shk_lock_flud" onclick="ws_commandRf868(8, 4)">Закрыть и в протечку</button>
+                <button id="btn_shk_flud_off" onclick="ws_commandRf868(8, 5)">Сбросить протечку</button>
+                Реле: <select id="rf868CommandrelayNum">
+                    <option selected value="0">Не выбрано</option>
+                    <option value="0">Реле 1</option>
+                    <option value="1">Реле 2</option>
+                    <option value="2">Реле 3</option>
+                    <option value="3">Реле 4</option>
+                </select>
+                <button id="btn_868relay_on" onclick="ws_commandRf868(12, 0)">Выключить</button>
+                <button id="btn_868relay_off" onclick="ws_commandRf868(12, 1)">Включить</button>
+                <hr />
+                Отслеживание статуса 868. Слот: <input id="rfID868_addslot" type="number" value=0 style="width:40px" /> ID: <input id="rfID868_addslot_id" type="text" style="width:300px" /> <button id="btn_rf868_add_slot" onclick="ws_send_addRf868_slot()">Добавить</button>
+                <hr />
+                Статус 868. Слот: <input id="rfID868StatusNum" type="number" value=0 style="width:40px" />
+                Тип: <input id="rfID868StatusType" type="text" readonly="" />
+                ID: <input id="rfID868StatusId" type="text" readonly="" />
+                <br><br>
+                Статус: <input id="rfID868Status" type="text" style="width:90%" readonly />
+                <br /> <br />
+                Заряд батареи: <input id="rfID868StatusBat" type="text" style="width:300px" readonly />
+                Версия ПО: <input id="rfID868StatusFwver" type="text" style="width:120px" readonly />
+                RSSI: <input id="rfID868StatusRSSI" type="text" style="width:90px" readonly />
+                Тампер: <input id="rfID868StatusTamper" type="text" style="width:80px" readonly />
+                <br><br>
+                Неизвестные состояния: <input id="rfID868StatusUknown" type="text" style="width:77%" readonly />
+                <hr />
+                Сценарии. Слот:
+                <input id="rfAction868Num" type="number" style="width:30px" value="0" /> Тип:
+                <select id="rfAction868Type">
+                    <option selected value="3">Не выбрано</option>
+                    <option value="0">ШК - протечка</option>
+                    <option value="1">Реле - выключатель</option>
+                </select>
+                ID исполнителя: <input id="rfAction868IdDo" type="text" value="" style="width:100px" />
+                ID триггера: <input id="rfAction868IdIf" type="text" value="" style="width:100px" />
+                Реле: <select id="rfAction868relayNum">
+                    <option selected value="0">Не выбрано</option>
+                    <option value="0">Реле 1</option>
+                    <option value="1">Реле 2</option>
+                    <option value="2">Реле 3</option>
+                    <option value="3">Реле 4</option>
+                </select>
+                <br><br>Выключатель: <select id="rfAction868switchNum">
+                    <option selected value="0">Не выбрано</option>
+                    <option value="0">Выкл 1</option>
+                    <option value="1">Выкл 2</option>
+                    <option value="2">Выкл 3</option>
+                    <option value="3">Выкл 4</option>
+                </select>
+                <button id="btnCreateAction868" onclick="wsCreateRfAction868()">Добавить</button>
+                <hr />
+                Состояние сценариев.
+                Слот: <input id="rfAction868StatusNum" type="number" value=0 style="width:40px" />
+                Счетчик: <input id="rfAction868count" type="text" style="width:50px" readonly="" />
+                Статус: <input id="rfAction868state" type="text" readonly style="width:50%" />
+                </div>
+            </details>
+            <hr />
+            <input id="rawmsg" type="text" value="&quot;type&quot;:&quot;data&quot;,&quot;tmr:on[4]&quot:1" />
+            <button onclick="ws_send_raw()">Команда</button>
+            <hr />
+        </section>
+        <aside>
+            <div class="portlet">
+                <div class="form-check">
+                    <div>
+                        <input class="form-check-input pointer" type="checkbox" id="wsLog" />
+                        <label class="form-check-label" for="wsLog">
+                            Show WS Data
+                        </label>
+                    </div>
+                    <div>
+                        <input class="form-check-input pointer" type="checkbox" id="JsonLog" />
+                        <label class="form-check-label" for="JsonLog">
+                            JsonFormat
+                        </label>
+                    </div>
+                    <div>
+                        <input class="form-check-input pointer" type="checkbox" id="parse433" />
+                        <label class="form-check-label" for="parse433">
+                            Парсить статусы 433
+                        </label>
+                    </div>
+                </div>
+                <hr />
+                <button class="btn btn-lg btn-danger" id="wsLogbotton" onclick="ws_clear_log();">
+                    Clear Log
+                </button>
+                <button class="btn btn-lg btn-warning" id="wsResendAllbotton" onclick="ws_resendAll();">
+                    ResendAll
+                </button>
+                <hr />
+                <textarea class="form-control" id="log" style="width: 100%; height: 100%" readonly></textarea>
+            </div>
+        </aside>
+        </div>
+    </font>
+</body>
+
+</html>
