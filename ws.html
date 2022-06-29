@@ -36,19 +36,19 @@
                     <div class="col-md">
                         <div class="row form-row">
                             <div class="col-md-5">
-                                <div class="form-grop">
+                                <div class="form-group">
                                     <label class="float-label-active" for="devId">Device ID</label>
                                     <input type="text" class="form-control" id="devId" readonly />
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-grop">
+                                <div class="form-group">
                                     <label class="float-label-active" for="devType">Type</label>
                                     <input type="text" class="form-control" id="devType" readonly />
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-grop">
+                                <div class="form-group">
                                     <label class="float-label-active" for="devVersion">Version</label>
                                     <input type="text" class="form-control" id="devVersion" readonly />
                                 </div>
@@ -56,19 +56,19 @@
                         </div>
                         <div class="row form-row">
                             <div class="col-md-5">
-                                <div class="form-grop">
+                                <div class="form-group">
                                     <label class="float-label-active" for="healthRssi">RSSI</label>
                                     <input type="text" class="form-control" id="healthRssi" readonly />
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-grop">
+                                <div class="form-group">
                                     <label class="float-label-active" for="healthNetworkQuality">Network quality</label>
                                     <input type="text" class="form-control" id="healthNetworkQuality" readonly />
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-grop">
+                                <div class="form-group">
                                     <label class="float-label-active" for="healthMemory">Memory</label>
                                     <input type="text" class="form-control" id="healthMemory" readonly />
                                 </div>
@@ -167,28 +167,28 @@
                         <div class="col-md">
                             <div class="row form-row">
                                 <div class="col-md-3">
-                                    <div class="form-grop">
+                                    <div class="form-group">
                                         <label class="float-label-active" for="stpm_U">U</label>
                                         <input class="form-control" id="stpm_U" readonly />
                     
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-grop">
+                                    <div class="form-group">
                                         <label class="float-label-active" for="stpm_I">I</label>
                                         <input class="form-control" id="stpm_I" readonly />
                     
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-grop">
+                                    <div class="form-group">
                                         <label class="float-label-active" for="stpm_Pact">Pact</label>
                                         <input class="form-control" id="stpm_Pact" readonly />
                     
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-grop">
+                                    <div class="form-group">
                                         <label class="float-label-active" for="stpm_Papp">Papp</label>
                                         <input class="form-control" id="stpm_Papp" readonly />
                     
@@ -245,24 +245,46 @@
                     
                 </div>
                 <hr />
-                <div>
-                    RegUrl:
-                    <input id="cloudRegUrl" type="text" style="width:400px" readonly=""/>
-                    WsUrl:
-                    <input id="cloudWsUrl" type="text" style="width:400px" readonly=""/> 
-                    <input id="cloudOnline" type="text" readonly=""/> <br/><br/>
-                    <button id="btnRegUrlToDevel" onclick="wsRegUrlToDevel()">To DEVEL</button>
-                    <button id="btnRegUrlToStaging" onclick="wsRegUrlToStaging()">To STAGING</button>
-                    <button id="btnRegUrlToNewStage" onclick="wsRegUrlToNewStage()">To New STAGING</button>
-                    <button id="btnRegUrlToProd" onclick="wsRegUrlToProd()">To PROD</button>
-                    
-                    <hr>
-                    Cloud Server:
-                    <input id="cloudServer" />
-                    <button id="btnSendCloudServer" onclick="ws_send_cloudServer()">Set</button>Time Zone:
-                    <input class="inputWidth" id="timeZone" />
-                    <button id="btnSendTimeZone" onclick="ws_send_timeZone()">Set</button>
+                <div class="row">
+                    <div class="col-md-7 mb-2">
+                        <label class="float-label-active" for="cloudRegUrl">RegURL</label>
+                        <input class="float-input form-control" id="cloudRegUrl" type="text" readonly="" />
+                    </div>
+
+                    <div class="col-md-7 mb-2">
+                        <label class="float-label-active" for="cloudRegUrl">WsURL</label>
+                        <input class="float-input form-control" id="cloudWsUrl" type="text" readonly="" />
+                    </div>
+
+                    <div class="col-md-7 mb-2">
+                        <label class="float-label-active" for="cloudRegUrl">Online</label>
+                        <input class="float-input form-control" id="cloudOnline" type="text" readonly="" />
+                    </div>
                 </div>
+                    <div>
+                    <button class="btn btn-lg btn-primary mr-1" id="btnRegUrlToDevel" onclick="wsRegUrlToDevel()">To DEVEL</button>
+                    <button class="btn btn-lg btn-primary mr-1" id="btnRegUrlToStaging" onclick="wsRegUrlToStaging()">To STAGING</button>
+                    <button class="btn btn-lg btn-primary mr-1" id="btnRegUrlToNewStage" onclick="wsRegUrlToNewStage()">To New STAGING</button>
+                    <button class="btn btn-lg btn-primary mr-1" id="btnRegUrlToProd" onclick="wsRegUrlToProd()">To PROD</button>
+                    </div>
+                    <hr>
+                    <div class="row form-row">
+                        <div class="col-md-4">
+                            <label class="float-label-active" for="cloudServer">Cloud Server</label>
+                            <input class="float-input form-control" id="cloudServer" />
+                        </div>
+                        <button class="btn btn-lg btn-primary ml-1" id="btnSendCloudServer" onclick="ws_send_cloudServer()">Set</button>
+                    </div>
+
+                    <div class="row form-row">
+                        <div class="col-md-4">
+                            <label class="float-label-active" for="timeZone">Time Zone</label>
+                            <input class="float-input form-control" id="timeZone" />
+                            
+                        </div>
+                        <button class="btn btn-lg btn-primary ml-1" id="btnSendTimeZone" onclick="ws_send_timeZone()">Set</button>
+                    </div>
+                
                 <hr />
                 <div>
                     <div class="art art3">Relay Advanced:
@@ -273,11 +295,18 @@
                         <option value="1">WATER_GUARD</option>
                         <option value="2">ROLLER_SHUTTER</option>
                     </select>
-                    <button onclick="wsChangeRelayAdvancedMode()" style="margin-left: 30px">Change</button>
-                    <a style="margin-left: 10px">posit</a>
-                    <input id="rollerShutterGetPosit" type="number" style="width:60px" value="0" readonly />
-                    <input id="rollerShutterSetPosit" type="number" style="width:60px" value="0" />
-                    <button onclick="wsRollerShutterSetPosit()" style="margin-left: 30px">Set</button>
+                    <button class="btn btn-lg btn-primary ml-3" onclick="wsChangeRelayAdvancedMode()" >Change</button>
+                    <div class="row form-row">
+                        <div class="col-md-2">
+                            <label class="float-label-active" for="rollerShutterGetPosit">Get Posit</label>
+                            <input class="float-input form-control" id="rollerShutterGetPosit" type="number" value="0" readonly />
+                        </div>
+                        <div class="col-md-2">
+                            <label class="float-label-active" for="rollerShutterSetPosit">Set Posit</label>
+                            <input class="float-input form-control" id="rollerShutterSetPosit" type="number" value="0" />
+                        </div>
+                        <button class="btn btn-lg btn-primary ml-3" onclick="wsRollerShutterSetPosit()" >Set</button>
+                    </div>
                 </div>
                 <hr />
                 <div>
