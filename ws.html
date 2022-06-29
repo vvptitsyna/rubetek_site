@@ -245,21 +245,23 @@
                     
                 </div>
                 <hr />
-                <div class="row">
-                    <div class="col-md-7 mb-2">
+                <div class="row form-row">
+                    <div class="col-md-6 mb-3">
                         <label class="float-label-active" for="cloudRegUrl">RegURL</label>
                         <input class="float-input form-control" id="cloudRegUrl" type="text" readonly="" />
                     </div>
-
-                    <div class="col-md-7 mb-2">
+                    <div class="col-md-6">
                         <label class="float-label-active" for="cloudRegUrl">WsURL</label>
                         <input class="float-input form-control" id="cloudWsUrl" type="text" readonly="" />
                     </div>
-
-                    <div class="col-md-7 mb-2">
+                </div>
+                <div class="row form-row">
+                    <div class="col-md-6 mb-3">    
                         <label class="float-label-active" for="cloudRegUrl">Online</label>
                         <input class="float-input form-control" id="cloudOnline" type="text" readonly="" />
                     </div>
+                </div>
+                    
                 </div>
                     <div>
                     <button class="btn btn-lg btn-primary mr-1" id="btnRegUrlToDevel" onclick="wsRegUrlToDevel()">To DEVEL</button>
@@ -287,7 +289,7 @@
                 
                 <hr />
                 <div>
-                    <div class="art art3">Relay Advanced:
+                    <div class="art3">Relay Advanced:
                     </div>
                     <a style="margin-left: 10px">mode</a>
                     <select id="relayAdvancedMode">
@@ -310,19 +312,47 @@
                 </div>
                 <hr />
                 <div>
-                    <div class="art art5">LAMP RGB Bright:
+                    <div class="art5">LAMP RGB Bright:
                     </div>
-                    <div>
-                        Brightness:<input class="inputWidth" id="lamp_Level" />%<button id="btnSendlamp" onclick="ws_send_lamp()">Set</button>
-                        White:<input class="inputWidth" id="rgb_LevelW" />%<button id="btnSendRGBW" onclick="ws_send_rgbW()">Set</button>
+                    <div class="row form-row">
+                        <div class="col-md-4">
+                            <label class="float-label-active" for="lamp_Level">Brightness, %</label>
+                            <input class="float-input form-control" id="lamp_Level" />
+                        </div>
+                        <button class="btn btn-lg btn-primary" id="btnSendlamp" onclick="ws_send_lamp()">Set</button>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-md-4">
+                            <label class="float-label-active" for="rgb_LevelW">White, %</label>
+                            <input class="float-input form-control" id="rgb_LevelW" />
+                        </div>
+                        <button class="btn btn-lg btn-primary" id="btnSendRGBW" onclick="ws_send_rgbW()">Set</button>
                     </div>
                     <hr />
-                    <div class="art art5">LAMP RGB Color:
+                    <div class="art5">LAMP RGB Color:
                     </div>
                     <div>
-                        Red:<input class="inputWidth" id="rgb_LevelR" />%<button id="btnSendRGBR" onclick="ws_send_rgbR()">Set</button>
-                        Green:<input class="inputWidth" id="rgb_LevelG" />%<button id="btnSendRGBG" onclick="ws_send_rgbG()">Set</button>
-                        Blue:<input class="inputWidth" id="rgb_LevelB" />%<button id="btnSendRGBB" onclick="ws_send_rgbB()">Set</button>
+                        <div class="row form-row">
+                            <div class="col-md-4">
+                                <label class="float-label-active" for="rgb_LevelR">Red, %</label>
+                                <input class="float-input form-control" id="rgb_LevelR" />
+                            </div>
+                            <button class="btn btn-lg btn-primary" id="btnSendRGBR" onclick="ws_send_rgbR()">Set</button>
+                        </div>
+                        <div class="row form-row">
+                            <div class="col-md-4">
+                                <label class="float-label-active" for="rgb_LevelG">Green, %</label>
+                                <input class="float-input form-control" id="rgb_LevelG" />
+                            </div>
+                            <button class="btn btn-lg btn-primary" id="btnSendRGBG" onclick="ws_send_rgbG()">Set</button>
+                        </div>
+                        <div class="row form-row">
+                            <div class="col-md-4">
+                                <label class="float-label-active" for="rgb_LevelB">Blue, %</label>
+                                <input class="float-input form-control" id="rgb_LevelB" />
+                            </div>
+                            <button class="btn btn-lg btn-primary" id="btnSendRGBB" onclick="ws_send_rgbB()">Set</button>
+                        </div>
                     </div>
                     <hr />
                     <div>
