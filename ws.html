@@ -356,65 +356,110 @@
                     </div>
                     <hr />
                     <div>
-                        <div class="art art8">RF:
+                        <div class="art8">RF:
                         </div>
-                        Seen ID: <input id="rfID" type="text" readonly />
-                        <button id="btn_rfDiscovery" onclick="ws_rfDiscovery()">Discovery</button>
+                        <div class="row form-row">
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="rfID">Seen ID</label>
+                                <input class="float-input form-control" id="rfID" type="text" readonly />
+                            </div>
+                            <button class="btn btn-lg btn-primary"id="btn_rfDiscovery" onclick="ws_rfDiscovery()">Discovery</button>
+                        </div>
                     </div>
                     <hr />
                     <div>
-                        <div class="art art8">Add action:
+                        <div class="art8">Add action:
                         </div>
-                        <a style="margin-left: 10px">#</a>
-                        <input id="rfActionNum" type="number" style="width:30px" value="0" />
-                        <a style="margin-left: 10px">rf id</a>
-                        <input id="rfActionId" type="number" style="width:70px" value="0" />
-                        <a style="margin-left: 10px">type</a>
-                        <select id="rfActionType">
-                            <option selected value="0">nothing</option>
-                            <option value="1">on</option>
-                            <option value="2">off</option>
-                            <option value="3">toggle</option>
-                            <option value="4">on then turn off</option>
-                            <option value="5">off then turn on</option>
-                            <option value="6">door mode</option>
-                            <option value="7">ventilation mode</option>
-                            <option value="8">rgb indicator</option>
-                            <option value="9">on when greater PARAM1</option>
-                            <option value="10">on when less PARAM1</option>
-                            <option value="11">on when in PARAM1 and PARAM2</option>
-                            <option value="12">off when greater PARAM1</option>
-                            <option value="13">off when less PARAM1</option>
-                            <option value="14">of when in PARAM1 and PARAM2</option>
-                            <option value="20">SUPPORT_32BIT_SENSORS</option>
-                        </select>
-                        <a style="margin-left: 10px">channel</a>
-                        <input id="rfActionChannel" type="number" style="width:40px" value="0" />
-                        <a style="margin-left: 10px">param1</a>
-                        <input id="rfActionParam1" type="number" style="width:70px" value="0" />
-                        <a style="margin-left: 10px">param2</a>
-                        <input id="rfActionParam2" type="number" style="width:70px" value="0" />
-                        <button id="btnCreateAction" onclick="wsCreateRfAction()" style="margin-left: 30px">Create</button>
+                        <div class="row form-row">
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="rfActionNum">#</label>
+                                <input class="float-input form-control" id="rfActionNum" type="number"  value="0" />
+                            </div>
+                        
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="rfActionId">rf id</label>
+                                <input class="float-input form-control" id="rfActionId" type="number" value="0" />
+                            </div>
+
+                            <div class="col-md-5">
+                                <a style="margin-left: 10px">type</a>
+                                <select id="rfActionType">
+                                    <option selected value="0">nothing</option>
+                                    <option value="1">on</option>
+                                    <option value="2">off</option>
+                                    <option value="3">toggle</option>
+                                    <option value="4">on then turn off</option>
+                                    <option value="5">off then turn on</option>
+                                    <option value="6">door mode</option>
+                                    <option value="7">ventilation mode</option>
+                                    <option value="8">rgb indicator</option>
+                                    <option value="9">on when greater PARAM1</option>
+                                    <option value="10">on when less PARAM1</option>
+                                    <option value="11">on when in PARAM1 and PARAM2</option>
+                                    <option value="12">off when greater PARAM1</option>
+                                    <option value="13">off when less PARAM1</option>
+                                    <option value="14">of when in PARAM1 and PARAM2</option>
+                                    <option value="20">SUPPORT_32BIT_SENSORS</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row form-row">
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="rfActionChannel">channel</label>
+                                <input class="float-input form-control" id="rfActionChannel" type="number" value="0" />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="rfActionParam1">param1</label>
+                                <input class="float-input form-control" id="rfActionParam1" type="number"  value="0" />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="rfActionParam2">param2</label>
+                                <input class="float-input form-control" id="rfActionParam2" type="number"  value="0" />
+                            </div>
+
+                            <button class="btn btn-lg btn-primary" id="btnCreateAction" onclick="wsCreateRfAction()" >Create</button>
+                        </div>
+                        
                     </div>
                     <hr />
                     <div>
-                        <div class="art art8">rgb indicator:
+                        <div class="art8">RGB indicator:
                         </div>
-                        <a style="margin-left: 10px">red(0-15)</a>
-                        <input id="rfActionParam2Red" type="number" style="width:70px" value="0" />
-                        <a style="margin-left: 10px">green(0-15)</a>
-                        <input id="rfActionParam2Green" type="number" style="width:70px" value="0" />
-                        <a style="margin-left: 10px">blue(0-15)</a>
-                        <input id="rfActionParam2Blue" type="number" style="width:70px" value="0" />
-                        <a style="margin-left: 10px">period(step 0.5s)</a>
-                        <input id="rfActionParam1Period" type="number" style="width:70px" value="0" />
-                        <a style="margin-left: 10px">duty(0-63)</a>
-                        <input id="rfActionParam1Duty" type="number" style="width:70px" value="0" />
-                        <button id="btnCreateActionRgb" onclick="wsCreateRfActionRgb()" style="margin-left: 30px">Copy to params</button>
+
+                        <div class="row form-row">
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="rfActionParam2Red">red(0-15)</label>
+                                <input class="float-input form-control"id="rfActionParam2Red" type="number" value="0" />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="rfActionParam2Green">green(0-15)</label>
+                                <input class="float-input form-control"id="rfActionParam2Green" type="number" value="0" />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="rfActionParam2Blue">blue(0-15)</label>
+                                <input class="float-input form-control"id="rfActionParam2Blue" type="number" value="0" />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="rfActionParam1Period">period(step 0.5s)</label>
+                                <input class="float-input form-control"id="rfActionParam1Period" type="number" value="0" />
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="rfActionParam1Duty">duty(0-63)</label>
+                                <input class="float-input form-control"id="rfActionParam1Duty" type="number" value="0" />
+                            </div>
+                            <button class="btn btn-lg btn-primary" id="btnCreateActionRgb" onclick="wsCreateRfActionRgb()" >Copy to params</button>
+                        </div>
                     </div>
                     <hr />
-                    <button id="btnBreezerOn" onclick="ws_send_data('&quot;stick:type&quot;:&quot;breezer3c&quot;');">Breezer ON</button>
-                    <button id="btnBreezerOf" onclick="ws_send_data('&quot;stick:type&quot;:&quot;none&quot;');">Breezer OFF</button>
+                    <button class="btn btn-lg btn-primary" id="btnBreezerOn" onclick="ws_send_data('&quot;stick:type&quot;:&quot;breezer3c&quot;');">Breezer ON</button>
+                    <button class="btn btn-lg btn-danger" id="btnBreezerOf" onclick="ws_send_data('&quot;stick:type&quot;:&quot;none&quot;');">Breezer OFF</button>
                 </div>
             </details>
             <details class="portlet" open>
