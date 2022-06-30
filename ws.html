@@ -134,77 +134,68 @@
             <details class="portlet">
                 <summary>Обновление ПО</summary>
                 <br>
-                <div class="card-body">
-                    <a style="margin-right: 10px">Обновление ПО</a>
-                    <input id="inpSwFileName" type="file" accept=".bin" onchange="fileSwOnChange(this)">
-                    <button id="btnUpdateDeviceSw" onclick="updateDeviceSw()" disabled>Обновить</button>
-                    <progress id="prgUpdateDeviceSw" max="100" value="0" style="margin-left: 20px"></progress>
-                    <div style="margin-top: 3px; font-size: 10pt; font-style: italic">
-                        <a class="small text-muted">To upload, start chrome with the command:</a>
-                        <a class="small text-muted" style="font-weight: bold;"> google-chrome --disable-web-security --user-data-dir</a>
+                <div class="form-row form-group">
+                    <div class="col-md-3">
+                    <a>Обновление ПО</a>
                     </div>
+                        <input id="inpSwFileName" type="file" accept=".bin" onchange="fileSwOnChange(this)">
+                        <button class="btn btn-primary btn-xs ml-3" id="btnUpdateDeviceSw" onclick="updateDeviceSw()" disabled>Обновить</button>
+                        <progress id="prgUpdateDeviceSw" max="100" value="0" style="margin-left: 20px"></progress>
+                        <div class="col-md-3"></div>
+                        <div>
+                            <a class="small text-muted">To upload, start chrome with the command:</a>
+                            <a class="small text-muted" style="font-weight: bold;"> google-chrome --disable-web-security --user-data-dir</a>
+                        </div>
+                    
                 </div>
-                <div style="margin: 10px;padding: 3px;border: 1px;border-color: #9E9E9E;background-color: beige;border-style: solid;">
-                    <a style="margin-right: 10px">Замена клиентского сертификата</a>
+                <hr/>
+                <div class="form-row form-group">
+                    <div class="col-md-3">
+                    <a>Замена клиентского сертификата</a>
+                    </div>
                     <input id="inpClSertFileName" type="file" accept=".bin" onchange="fileClSertOnChange(this)">
-                    <button id="btnUpdateDeviceClSert" onclick="updateDeviceClSert()" disabled>Заменить</button>
+                    <button class="btn btn-warning btn-xs ml-3" id="btnUpdateDeviceClSert" onclick="updateDeviceClSert()" disabled>Заменить</button>
                     <progress id="prgUpdateDeviceClSert" max="100" value="0" style="margin-left: 20px" />
                 </div>
-                <div style="margin: 10px;padding: 3px;border: 1px;border-color: #9E9E9E;background-color: beige;border-style: solid;">
-                    <a style="margin-right: 10px">Замена сертификата сервера</a>
+                <hr/>
+                <div class="form-row form-group">
+                    <div class="col-md-3">
+                    <a>Замена сертификата сервера</a>
+                    </div>
                     <input id="inpCASertFileName" type="file" accept=".bin" onchange="fileCASertOnChange(this)">
-                    <button id="btnUpdateDeviceCASert" onclick="updateDeviceCASert()" disabled>Заменить</button>
+                    <button class="btn btn-warning btn-xs ml-3" id="btnUpdateDeviceCASert" onclick="updateDeviceCASert()" disabled>Заменить</button>
                     <progress id="prgUpdateDeviceCASert" max="100" value="0" style="margin-left: 20px" />
                 </div>
             </details>
             <details class="portlet">
                 <summary>Старое</summary>
                 <br>
-                <div>
-                    <div class="art1">STPM:
-                    </div>  
-                    <div class="row">
-                        <div class="col-md">
-                            <div class="row form-row">
+                    <div class="mb-2 ml-1">STPM:</div>  
+                            <div class="form-row form-group">
                                 <div class="col-md-3">
-                                    <div class="form-group">
                                         <label class="float-label-active" for="stpm_U">U</label>
-                                        <input class="form-control" id="stpm_U" readonly />
-                    
-                                    </div>
+                                        <input class="float-input form-control" id="stpm_U" readonly />
                                 </div>
+
                                 <div class="col-md-3">
-                                    <div class="form-group">
                                         <label class="float-label-active" for="stpm_I">I</label>
-                                        <input class="form-control" id="stpm_I" readonly />
-                    
-                                    </div>
+                                        <input class="float-input form-control" id="stpm_I" readonly />
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
                                         <label class="float-label-active" for="stpm_Pact">Pact</label>
-                                        <input class="form-control" id="stpm_Pact" readonly />
-                    
-                                    </div>
+                                        <input class="float-input form-control" id="stpm_Pact" readonly />
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
                                         <label class="float-label-active" for="stpm_Papp">Papp</label>
-                                        <input class="form-control" id="stpm_Papp" readonly />
-                    
-                                    </div>
+                                        <input class="float-input form-control" id="stpm_Papp" readonly />
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                </div>
                 <hr />
                 <div>
-                    <div class="art2">STPM Calibration:
+                    <div class="mb-2 ml-1">STPM Calibration:
                     </div>
                     
-                        <div class="row form-row">
+                        <div class="row form-row form-group">
                             <div class="col-md-2">
                                 <label class="float-label-active" for="stpm_OffsetU">offset U</label>
                                 <input class="float-input form-control" id="stpm_OffsetU" value="0.0" />
@@ -217,7 +208,7 @@
                             <button class="btn btn-lg btn-primary ml-1" id="btnSendKU" onclick="ws_send_kU()">Set</button>
                         </div>
                     
-                        <div class="row form-row">
+                        <div class="row form-row form-group">
                             <div class="col-md-2">
                                 <label class="float-label-active" for="stpm_OffsetI">offset I</label>
                                 <input class="float-input form-control" id="stpm_OffsetI" value="0.0" />
@@ -230,7 +221,7 @@
                             <button class="btn btn-lg btn-primary ml-1" id="btnSendKI" onclick="ws_send_kI()">Set</button>
                         </div>
                     
-                        <div class="row form-row">
+                        <div class="row form-row form-group">
                             <div class="col-md-2">
                                 <label class="float-label-active" for="stpm_OffsetP">offset P</label>
                                 <input class="float-input form-control" id="stpm_OffsetP" value="0.0" />
@@ -245,7 +236,7 @@
                     
                 </div>
                 <hr />
-                <div class="row form-row">
+                <div class="row form-row form-group">
                     <div class="col-md-6 mb-3">
                         <label class="float-label-active" for="cloudRegUrl">RegURL</label>
                         <input class="float-input form-control" id="cloudRegUrl" type="text" readonly="" />
@@ -255,7 +246,7 @@
                         <input class="float-input form-control" id="cloudWsUrl" type="text" readonly="" />
                     </div>
                 </div>
-                <div class="row form-row">
+                <div class="row form-row form-group">
                     <div class="col-md-6 mb-3">    
                         <label class="float-label-active" for="cloudRegUrl">Online</label>
                         <input class="float-input form-control" id="cloudOnline" type="text" readonly="" />
@@ -263,14 +254,14 @@
                 </div>
                     
                 </div>
-                    <div>
-                    <button class="btn btn-lg btn-primary mr-1" id="btnRegUrlToDevel" onclick="wsRegUrlToDevel()">To DEVEL</button>
+                    <div class=" row form-row form-group">
+                    <button class="btn btn-lg btn-primary mr-1 ml-2" id="btnRegUrlToDevel" onclick="wsRegUrlToDevel()">To DEVEL</button>
                     <button class="btn btn-lg btn-primary mr-1" id="btnRegUrlToStaging" onclick="wsRegUrlToStaging()">To STAGING</button>
                     <button class="btn btn-lg btn-primary mr-1" id="btnRegUrlToNewStage" onclick="wsRegUrlToNewStage()">To New STAGING</button>
                     <button class="btn btn-lg btn-primary mr-1" id="btnRegUrlToProd" onclick="wsRegUrlToProd()">To PROD</button>
                     </div>
                     <hr>
-                    <div class="row form-row">
+                    <div class="row form-row form-group">
                         <div class="col-md-4">
                             <label class="float-label-active" for="cloudServer">Cloud Server</label>
                             <input class="float-input form-control" id="cloudServer" />
@@ -278,7 +269,7 @@
                         <button class="btn btn-lg btn-primary ml-1" id="btnSendCloudServer" onclick="ws_send_cloudServer()">Set</button>
                     </div>
 
-                    <div class="row form-row">
+                    <div class="row form-row form-group">
                         <div class="col-md-4">
                             <label class="float-label-active" for="timeZone">Time Zone</label>
                             <input class="float-input form-control" id="timeZone" />
@@ -289,16 +280,16 @@
                 
                 <hr />
                 <div>
-                    <div class="art3">Relay Advanced:
+                    <div class="mb-2 ml-1">Relay Advanced:
                     </div>
-                    <a style="margin-left: 10px">mode</a>
+                    <div class="mb-2 ml-1">mode<div>
                     <select id="relayAdvancedMode">
                         <option selected value="0">none</option>
                         <option value="1">WATER_GUARD</option>
                         <option value="2">ROLLER_SHUTTER</option>
                     </select>
-                    <button class="btn btn-lg btn-primary ml-3" onclick="wsChangeRelayAdvancedMode()" >Change</button>
-                    <div class="row form-row">
+                    <button class="btn btn-lg btn-primary ml-1" onclick="wsChangeRelayAdvancedMode()" >Change</button>
+                    <div class="row form-row form-group">
                         <div class="col-md-2">
                             <label class="float-label-active" for="rollerShutterGetPosit">Get Posit</label>
                             <input class="float-input form-control" id="rollerShutterGetPosit" type="number" value="0" readonly />
@@ -307,21 +298,21 @@
                             <label class="float-label-active" for="rollerShutterSetPosit">Set Posit</label>
                             <input class="float-input form-control" id="rollerShutterSetPosit" type="number" value="0" />
                         </div>
-                        <button class="btn btn-lg btn-primary ml-3" onclick="wsRollerShutterSetPosit()" >Set</button>
+                        <button class="btn btn-lg btn-primary " onclick="wsRollerShutterSetPosit()" >Set</button>
                     </div>
                 </div>
                 <hr />
                 <div>
-                    <div class="art5">LAMP RGB Bright:
+                    <div class="mb-2 ml-1">LAMP RGB Bright:
                     </div>
-                    <div class="row form-row">
+                    <div class="row form-row form-group">
                         <div class="col-md-4">
                             <label class="float-label-active" for="lamp_Level">Brightness, %</label>
                             <input class="float-input form-control" id="lamp_Level" />
                         </div>
                         <button class="btn btn-lg btn-primary" id="btnSendlamp" onclick="ws_send_lamp()">Set</button>
                     </div>
-                    <div class="row form-row">
+                    <div class="row form-row form-group">
                         <div class="col-md-4">
                             <label class="float-label-active" for="rgb_LevelW">White, %</label>
                             <input class="float-input form-control" id="rgb_LevelW" />
@@ -329,24 +320,24 @@
                         <button class="btn btn-lg btn-primary" id="btnSendRGBW" onclick="ws_send_rgbW()">Set</button>
                     </div>
                     <hr />
-                    <div class="art5">LAMP RGB Color:
+                    <div class="mb-2 ml-1">LAMP RGB Color:
                     </div>
                     <div>
-                        <div class="row form-row">
+                        <div class="row form-row form-group">
                             <div class="col-md-4">
                                 <label class="float-label-active" for="rgb_LevelR">Red, %</label>
                                 <input class="float-input form-control" id="rgb_LevelR" />
                             </div>
                             <button class="btn btn-lg btn-primary" id="btnSendRGBR" onclick="ws_send_rgbR()">Set</button>
                         </div>
-                        <div class="row form-row">
+                        <div class="row form-row form-group">
                             <div class="col-md-4">
                                 <label class="float-label-active" for="rgb_LevelG">Green, %</label>
                                 <input class="float-input form-control" id="rgb_LevelG" />
                             </div>
                             <button class="btn btn-lg btn-primary" id="btnSendRGBG" onclick="ws_send_rgbG()">Set</button>
                         </div>
-                        <div class="row form-row">
+                        <div class="row form-row form-group">
                             <div class="col-md-4">
                                 <label class="float-label-active" for="rgb_LevelB">Blue, %</label>
                                 <input class="float-input form-control" id="rgb_LevelB" />
@@ -356,9 +347,9 @@
                     </div>
                     <hr />
                     <div>
-                        <div class="art8">RF:
+                        <div class="mb-2 ml-1">RF:
                         </div>
-                        <div class="row form-row">
+                        <div class="row form-row form-group">
                             <div class="col-md-2">
                                 <label class="float-label-active" for="rfID">Seen ID</label>
                                 <input class="float-input form-control" id="rfID" type="text" readonly />
@@ -368,9 +359,9 @@
                     </div>
                     <hr />
                     <div>
-                        <div class="art8">Add action:
+                        <div class="mb-2 ml-1">Add action:
                         </div>
-                        <div class="row form-row">
+                        <div class="row form-row form-group">
                             <div class="col-md-2">
                                 <label class="float-label-active" for="rfActionNum">#</label>
                                 <input class="float-input form-control" id="rfActionNum" type="number"  value="0" />
@@ -404,7 +395,7 @@
                             </div>
                         </div>
                         
-                        <div class="row form-row">
+                        <div class="row form-row form-group">
                             <div class="col-md-2">
                                 <label class="float-label-active" for="rfActionChannel">channel</label>
                                 <input class="float-input form-control" id="rfActionChannel" type="number" value="0" />
@@ -426,10 +417,10 @@
                     </div>
                     <hr />
                     <div>
-                        <div class="art8">RGB indicator:
+                        <div class="mb-2 ml-1">RGB indicator:
                         </div>
 
-                        <div class="row form-row">
+                        <div class="row form-row form-group">
                             <div class="col-md-2">
                                 <label class="float-label-active" for="rfActionParam2Red">red(0-15)</label>
                                 <input class="float-input form-control"id="rfActionParam2Red" type="number" value="0" />
@@ -465,88 +456,228 @@
             <details class="portlet" open>
                 <summary>Функционал 868</summary>
                 <br>
-                Настройки 868:
-                Канал <input class="inputWidth" id="channel868" /> <button id="btnchannel868" onclick="ws_send_channel868()"> Set</button>
-                Ключи <input class="inputWidth" id="key868_0" /> <input class="inputWidth" id="key868_1" /> <input class="inputWidth" id="key868_2" /> <input class="inputWidth" id="key868_3" /> <button id="btnkey868" onclick="ws_send_key868()">Set</button>
-                <hr />
-                <div>Добавление 868:
-                    <button id="btn_rfDiscovery868" onclick="ws_rfDiscovery868()">Discovery868</button>
-                    Seen. Тип: <input id="rfID868SeenType" type="text" readonly="" />
-                    ID: <input id="rfID868" type="text" readonly />
-                    <button id="btnAddRf868" onclick="ws_send_AddRf868()">Add</button>
-                    <br>
-                    <br>
-                    Статус добавления: <input id="rfID868_addstatus" type="text" readonly />
+                <div class="mb-2 ml-1">Настройки 868:</div>
+                <div class="form-row form-group">
+                    <div class="col-md-2">
+                        <label class="float-label-active" for="channel868">Канал</label>
+                        <input class="float-input form-control" id="channel868" /> 
+                    </div>
+                    <button class="btn btn-lg btn-primary ml-2" id="btnchannel868" onclick="ws_send_channel868()"> Set</button>
+                </div>
+
+                <div class="form-row form-group">
+                    <div class="col-md-2">
+                        <label class="float-label-active" for="key868_0">Ключ 0</label>
+                        <input class="float-input form-control" id="key868_0" />
+                    </div>
+                    <div class="col-md-2">
+                        <label class="float-label-active" for="key868_1">Ключ 1</label>
+                        <input class="float-input form-control" id="key868_1" />
+                    </div>
+                    <div class="col-md-2">
+                        <label class="float-label-active" for="key868_2">Ключ 2</label> 
+                        <input class="float-input form-control" id="key868_2" /> 
+                    </div>
+                    <div class="col-md-2">
+                        <label class="float-label-active" for="key868_3">Ключ 3</label>
+                        <input class="float-input form-control" id="key868_3" /> 
+                    </div>
+                    <button class="btn btn-lg btn-primary ml-1" id="btnkey868" onclick="ws_send_key868()">Set</button>
                 </div>
                 <hr />
-                Команды для 868. ID: <input id="rfID868СCommandId" type="text" value="" />
-                <br /><br />
-                ШК:
-                <button id="btn_shk_open" onclick="ws_commandRf868(8, 1)">Закрыть</button>
-                <button id="btn_shk_lock" onclick="ws_commandRf868(8, 2)">Открыть</button>
-                <button id="btn_shk_clean" onclick="ws_commandRf868(8, 3)">Прочистить</button>
-                <button id="btn_shk_lock_flud" onclick="ws_commandRf868(8, 4)">Закрыть и в протечку</button>
-                <button id="btn_shk_flud_off" onclick="ws_commandRf868(8, 5)">Сбросить протечку</button>
-                Реле: <select id="rf868CommandrelayNum">
+                <div class="mb-2 ml-1">Добавление 868:</div>
+                    <div class="form-row form-group">
+                        <div class="col-md-3">
+                            <label class="float-label-active" for="rfID868SeenType">Seen. Тип</label>
+                            <input class="float-input form-control" id="rfID868SeenType" type="text" readonly="" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="float-label-active" for="rfID868">ID</label>
+                            <input class="float-input form-control" id="rfID868" type="text" readonly />
+                        </div>
+                            <button class="btn btn-lg btn-primary ml-1" id="btnAddRf868" onclick="ws_send_AddRf868()">Add</button>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label class="float-label-active" for="rfID868_addstatus">Статус добавления</label>
+                            <input class="float-input form-control" id="rfID868_addstatus" type="text" readonly />
+                        </div>
+                            <button class="btn btn-lg btn-primary ml-2" id="btn_rfDiscovery868" onclick="ws_rfDiscovery868()">Discovery868</button>
+                    </div>
+                <hr />
+                <div class="mb-2 ml-1">Команды для 868</div>
+                <div class="form-row form-group">
+                    <div class="col-md-5">
+                        <label class="float-label-active" for="rfID868СCommandId">ID</label>
+                        <input class="float-input form-control" id="rfID868СCommandId" type="text" value="" />
+                    </div>
+                </div>
+                
+                <div class="mb-2 ml-1">ШК:</div>
+                <div class="row form-row form-group">
+                    <button class="btn btn-lg btn-danger mr-3 ml-2" id="btn_shk_open" onclick="ws_commandRf868(8, 1)">Закрыть</button>
+                    <button class="btn btn-lg btn-primary mr-3" id="btn_shk_lock" onclick="ws_commandRf868(8, 2)">Открыть</button>
+                    <button class="btn btn-lg btn-primary mr-3" id="btn_shk_clean" onclick="ws_commandRf868(8, 3)">Прочистить</button>
+                    <button class="btn btn-lg btn-primary mr-3" id="btn_shk_lock_flud" onclick="ws_commandRf868(8, 4)">Закрыть и в протечку</button>
+                    <button class="btn btn-lg btn-primary mr-3" id="btn_shk_flud_off" onclick="ws_commandRf868(8, 5)">Сбросить протечку</button>
+                </div>
+                <div class="mb-2 ml-1">Реле:</div>
+                <div class="form-row form-group">
+                <select id="rf868CommandrelayNum" class="ml-2">
                     <option selected value="0">Не выбрано</option>
                     <option value="0">Реле 1</option>
                     <option value="1">Реле 2</option>
                     <option value="2">Реле 3</option>
                     <option value="3">Реле 4</option>
-                </select>
-                <button id="btn_868relay_on" onclick="ws_commandRf868(12, 0)">Выключить</button>
-                <button id="btn_868relay_off" onclick="ws_commandRf868(12, 1)">Включить</button>
+                    </select>
+                    <button class="btn btn-lg btn-danger ml-2" id="btn_868relay_on" onclick="ws_commandRf868(12, 0)">Выключить</button>
+                    <button class="btn btn-lg btn-primary ml-2" id="btn_868relay_off" onclick="ws_commandRf868(12, 1)">Включить</button>
+                </div>
                 <hr />
-                Отслеживание статуса 868. Слот: <input id="rfID868_addslot" type="number" value=0 style="width:40px" /> ID: <input id="rfID868_addslot_id" type="text" style="width:300px" /> <button id="btn_rf868_add_slot" onclick="ws_send_addRf868_slot()">Добавить</button>
+                <div class="mb-2 ml-1">Отслеживание статуса 868</div>
+                <div class="form-row form-group">
+                    <div class="col-md-2">
+                        <label class="float-label-active" for="rfID868_addslot">Слот</label>
+                        <input class="float-input form-control" id="rfID868_addslot" type="number" value=0 />
+                    </div>
+                    <div class="col-md-5">
+                        <label class="float-label-active" for="rfID868_addslot_id">ID</label>
+                        <input class="float-input form-control" id="rfID868_addslot_id" type="text" /> 
+                    </div>
+                    <button class="btn btn-lg btn-primary" id="btn_rf868_add_slot" onclick="ws_send_addRf868_slot()">Добавить</button>
+                </div>
                 <hr />
-                Статус 868. Слот: <input id="rfID868StatusNum" type="number" value=0 style="width:40px" />
-                Тип: <input id="rfID868StatusType" type="text" readonly="" />
-                ID: <input id="rfID868StatusId" type="text" readonly="" />
-                <br><br>
-                Статус: <input id="rfID868Status" type="text" style="width:90%" readonly />
-                <br /> <br />
-                Заряд батареи: <input id="rfID868StatusBat" type="text" style="width:300px" readonly />
-                Версия ПО: <input id="rfID868StatusFwver" type="text" style="width:120px" readonly />
-                RSSI: <input id="rfID868StatusRSSI" type="text" style="width:90px" readonly />
-                Тампер: <input id="rfID868StatusTamper" type="text" style="width:80px" readonly />
-                <br><br>
-                Неизвестные состояния: <input id="rfID868StatusUknown" type="text" style="width:77%" readonly />
+                <div class="mb-2 ml-1">Статус 868</div>
+                <div class="form-row form-group">
+                    <div class="col-md-2">
+                        <label class="float-label-active" for="rfID868StatusNum">Слот</label>
+                        <input class="float-input form-control" id="rfID868StatusNum" type="number" value=0 />
+                    </div>
+
+                    <div class="col-md-5">
+                        <label class="float-label-active" for="rfID868StatusType">Тип</label>
+                        <input class="float-input form-control" id="rfID868StatusType" type="text" readonly="" />
+                    </div>
+
+                    <div class="col-md-5">
+                        <label class="float-label-active" for="rfID868StatusId">ID</label>
+                        <input class="float-input form-control" id="rfID868StatusId" type="text" readonly="" />
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col-md-12">
+                        <label class="float-label-active" for="rfID868Status">Статус</label>
+                        <input class="float-input form-control" id="rfID868Status" type="text" readonly />
+                    </div>
+                </div>
+                <div class="form-row form-group">
+                    <div class="col-md-3">
+                        <label class="float-label-active" for="rfID868StatusBat">Заряд батареи</label>
+                        <input class="float-input form-control" id="rfID868StatusBat" type="text"  readonly />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="float-label-active" for="rfID868StatusFwver">Версия ПО</label>
+                        <input class="float-input form-control" id="rfID868StatusFwver" type="text" readonly />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="float-label-active" for="rfID868StatusRSSI">RSSI</label>
+                        <input class="float-input form-control" id="rfID868StatusRSSI" type="text" readonly />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="float-label-active" for="rfID868StatusTamper">Тампер</label>
+                        <input class="float-input form-control" id="rfID868StatusTamper" type="text" readonly />
+                    </div>
+
+                    
+                </div>
+                <div class="form-row form-group">
+                    <div class="col-md-12">
+                        <label class="float-label-active" for="rfID868StatusUknown">Неизвестные состояния</label>
+                        <input class="float-input form-control" id="rfID868StatusUknown" type="text" readonly />
+                    </div>
+                </div>
+                
                 <hr />
-                Сценарии. Слот:
-                <input id="rfAction868Num" type="number" style="width:30px" value="0" /> Тип:
-                <select id="rfAction868Type">
-                    <option selected value="3">Не выбрано</option>
-                    <option value="0">ШК - протечка</option>
-                    <option value="1">Реле - выключатель</option>
-                </select>
-                ID исполнителя: <input id="rfAction868IdDo" type="text" value="" style="width:100px" />
-                ID триггера: <input id="rfAction868IdIf" type="text" value="" style="width:100px" />
-                Реле: <select id="rfAction868relayNum">
-                    <option selected value="0">Не выбрано</option>
-                    <option value="0">Реле 1</option>
-                    <option value="1">Реле 2</option>
-                    <option value="2">Реле 3</option>
-                    <option value="3">Реле 4</option>
-                </select>
-                <br><br>Выключатель: <select id="rfAction868switchNum">
-                    <option selected value="0">Не выбрано</option>
-                    <option value="0">Выкл 1</option>
-                    <option value="1">Выкл 2</option>
-                    <option value="2">Выкл 3</option>
-                    <option value="3">Выкл 4</option>
-                </select>
-                <button id="btnCreateAction868" onclick="wsCreateRfAction868()">Добавить</button>
+                <div class="mb-2 ml-1">Сценарии</div>
+                <div class="form-row form-group">
+                    <div class="col-md-1">
+                        <label class="float-label-active" for="rfAction868Num">Слот</label>
+                        <input class="float-input form-control" id="rfAction868Num" type="number" value="0" />
+                    </div>
+                    <div class="col-md-2">
+                        Тип:
+                        <select id="rfAction868Type">
+                            <option selected value="3">Не выбрано</option>
+                            <option value="0">ШК - протечка</option>
+                            <option value="1">Реле - выключатель</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="float-label-active" for="rfAction868IdDo">ID исполнителя</label>
+                        <input class="float-input form-control" id="rfAction868IdDo" type="text" value=""/>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="float-label-active" for="rfAction868IdIf">ID исполнителя</label>
+                        <input class="float-input form-control" id="rfAction868IdIf" type="text" value=""/>
+                    </div>
+
+                    <div class="col-md-2">
+                        Реле: <select id="rfAction868relayNum">
+                            <option selected value="0">Не выбрано</option>
+                            <option value="0">Реле 1</option>
+                            <option value="1">Реле 2</option>
+                            <option value="2">Реле 3</option>
+                            <option value="3">Реле 4</option>
+                        </select>
+                    </div>
+
+                </div>
+                  
+                <div class="form-row form-group">
+                    <div class="col-md-2">
+                        Выключатель: <select id="rfAction868switchNum">
+                            <option selected value="0">Не выбрано</option>
+                            <option value="0">Выкл 1</option>
+                            <option value="1">Выкл 2</option>
+                            <option value="2">Выкл 3</option>
+                            <option value="3">Выкл 4</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-lg btn-primary" id="btnCreateAction868" onclick="wsCreateRfAction868()">Добавить</button>
+
+                </div>
                 <hr />
-                Состояние сценариев.
-                Слот: <input id="rfAction868StatusNum" type="number" value=0 style="width:40px" />
-                Счетчик: <input id="rfAction868count" type="text" style="width:50px" readonly="" />
-                Статус: <input id="rfAction868state" type="text" readonly style="width:50%" />
+                <div class="mb-2 ml-1">Состояние сценариев</div>
+                <div class="form-row">
+                    <div class="col-md-2">
+                        <label class="float-label-active" for="rfAction868StatusNum">Слот</label>
+                        <input class="float-input form-control" id="rfAction868StatusNum" type="number" value=0 />
+                    </div>
+                    <div class="col-md-2">
+                        <label class="float-label-active" for="rfAction868count">Счетчик</label>
+                        <input class="float-input form-control" id="rfAction868count" type="text" readonly="" />
+                    </div>
+                    <div class="col-md-8">
+                        <label class="float-label-active" for="rfAction868state">Статус</label>
+                        <input class="float-input form-control" id="rfAction868state" type="text" readonly />
+                    </div>
                 </div>
             </details>
-            <hr />
-            <input id="rawmsg" type="text" value="&quot;type&quot;:&quot;data&quot;,&quot;tmr:on[4]&quot:1" />
-            <button onclick="ws_send_raw()">Команда</button>
-            <hr />
+            
+            
+            <div class="portlet">
+                <div class="form-row">
+                    <div class="col-md-7">
+                        <input class="float-input form-control" id="rawmsg" type="text" value="&quot;type&quot;:&quot;data&quot;,&quot;tmr:on[4]&quot:1" />
+                    </div>
+                    <button class="btn btn-lg btn-primary" onclick="ws_send_raw()">Команда</button>
+                </div>
+            </div>
+            
         </section>
         <aside>
             <div class="portlet">
