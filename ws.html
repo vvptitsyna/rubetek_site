@@ -166,6 +166,31 @@
                         To PROD
                     </button>
                 </div>
+                <hr/>
+                <div class="row form-row form-group align-items-md-center">
+                    <div class="col-md-4">
+                        <label class="float-label-active" for="cloudServer">
+                            Cloud Server
+                        </label>
+                        <input class="float-input form-control" id="cloudServer" />
+                    </div>
+                    <button class="btn btn-primary ml-1" id="btnSendCloudServer" onclick="ws_send_cloudServer()">
+                        Set
+                    </button>
+                </div>
+
+                <div class="row form-row form-group align-items-md-center">
+                    <div class="col-md-4">
+                        <label class="float-label-active" for="timeZone">
+                            Time Zone
+                        </label>
+                        <input class="float-input form-control" id="timeZone" />
+
+                    </div>
+                    <button class="btn btn-primary ml-1" id="btnSendTimeZone" onclick="ws_send_timeZone()">
+                        Set
+                    </button>
+                </div>
             </div>
 
             <details class="portlet">
@@ -308,33 +333,6 @@
                     </div>
 
                 </div>
-                <hr />
-
-                <div class="row form-row form-group align-items-md-center">
-                    <div class="col-md-4">
-                        <label class="float-label-active" for="cloudServer">
-                            Cloud Server
-                        </label>
-                        <input class="float-input form-control" id="cloudServer" />
-                    </div>
-                    <button class="btn btn-primary ml-1" id="btnSendCloudServer" onclick="ws_send_cloudServer()">
-                        Set
-                    </button>
-                </div>
-
-                <div class="row form-row form-group align-items-md-center">
-                    <div class="col-md-4">
-                        <label class="float-label-active" for="timeZone">
-                            Time Zone
-                        </label>
-                        <input class="float-input form-control" id="timeZone" />
-
-                    </div>
-                    <button class="btn btn-primary ml-1" id="btnSendTimeZone" onclick="ws_send_timeZone()">
-                        Set
-                    </button>
-                </div>
-
                 <hr />
                 <div>
                     <div class="mb-2 ml-1">Relay Advanced:
