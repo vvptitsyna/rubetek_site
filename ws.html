@@ -164,8 +164,8 @@
                         <input class="float-input form-control" id="cloudWsUrl" type="text" readonly="" />
                     </div>
                 </div>
-                <div class="row form-row justify-content-between">
-                    <div class="col-md-3 mb-3">
+                <div class="row form-row justify-content-between align-items-md-center">
+                    <div class="col-md-3">
                         <label class="float-label-active" for="cloudOnline">
                             Online
                         </label>
@@ -886,8 +886,8 @@
         </section>
         <aside>
             <div class="portlet">
-                <div class="form-row align-items-md-center justify-content-between flex-fill">
-                    <div class="col-sm-9">
+                <div class="row form-row flex-fill align-items-md-center justify-content-between">
+                    <div class="col-sm">
                         <input class="float-input form-control" id="rawmsg" type="text" value="&quot;type&quot;:&quot;data&quot;,&quot;tmr:on[4]&quot:1" />
                     </div>
                     
@@ -898,27 +898,32 @@
                 </div>
             </div>
             <div class="portlet">
+
                 <div class="form-check">
-                    <div>
-                        <input class="form-check-input pointer" type="checkbox" id="wsLog" />
-                        <label class="form-check-label" for="wsLog">
-                            Show WS Data
-                        </label>
-                    </div>
-                    <div>
-                        <input class="form-check-input pointer" type="checkbox" id="JsonLog" />
-                        <label class="form-check-label" for="JsonLog">
-                            JsonFormat
-                        </label>
-                    </div>
-                    <div>
-                        <input class="form-check-input pointer" type="checkbox" id="parse433" />
-                        <label class="form-check-label" for="parse433">
-                            Парсить статусы 433
-                        </label>
+                    <div class="mt-2 flex-row row">
+                        <div class="form-check-inline">
+                            <input class="form-check-input pointer" type="checkbox" id="wsLog" />
+                            <label class="form-check-label" for="wsLog">
+                                Show WS Data
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input pointer" type="checkbox" id="JsonLog" />
+                            <label class="form-check-label" for="JsonLog">
+                                JsonFormat
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input pointer" type="checkbox" id="parse433" />
+                            <label class="form-check-label" for="parse433">
+                                Парсить статусы 433
+                            </label>
+                        </div>
                     </div>
                 </div>
+
                 <hr />
+                
                 <button class="btn btn-danger" id="wsLogbotton" onclick="ws_clear_log();">
                     Clear Log
                 </button>
