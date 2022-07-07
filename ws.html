@@ -367,14 +367,20 @@
                 <div>
                     <div class="mb-2 ml-1">Relay Advanced:
                     </div>
-                    <div class="mb-2 ml-1">mode<div>
-                            <select id="relayAdvancedMode">
-                                <option selected value="0">none</option>
-                                <option value="1">WATER_GUARD</option>
-                                <option value="2">ROLLER_SHUTTER</option>
-                            </select>
-                            <button class="btn btn-primary ml-1"
-                                onclick="wsChangeRelayAdvancedMode()">Change</button>
+                        <div class="form-row form-group align-items-md-center">
+                            <div class="col-md-2">
+                                <label class="float-label-active" for="relayAdvancedMode">
+                                    mode: 
+                                </label>
+                                <select class="form-control" id="relayAdvancedMode">
+                                    <option selected value="0">none</option>
+                                    <option value="1">WATER_GUARD</option>
+                                    <option value="2">ROLLER_SHUTTER</option>
+                                </select>
+                            </div>
+                                <button class="btn btn-primary ml-1"
+                                    onclick="wsChangeRelayAdvancedMode()">Change</button>
+                        </div>
                             <div class="row form-row form-group align-items-md-center">
                                 <div class="col-md-2-mt-2">
                                     <label class="float-label-active" for="rollerShutterGetPosit">
@@ -483,10 +489,11 @@
                                         <input class="float-input form-control" id="rfActionId" type="number"
                                             value="0" />
                                     </div>
-
-                                    <div class="col-md-5">
-                                        <a style="margin-left: 10px">type</a>
-                                        <select id="rfActionType">
+                                    <div class="col-md-3">
+                                        <label class="float-label-active" for="rfActionType">
+                                            type: 
+                                        </label>
+                                        <select class="form-control" id="rfActionType">
                                             <option selected value="0">nothing</option>
                                             <option value="1">on</option>
                                             <option value="2">off</option>
@@ -694,15 +701,19 @@
                         Сбросить протечку
                     </button>
                 </div>
-                <div class="mb-2 ml-1">Реле:</div>
                 <div class="form-row form-group align-items-md-center">
-                    <select id="rf868CommandrelayNum" class="ml-2">
-                        <option selected value="0">Не выбрано</option>
-                        <option value="0">Реле 1</option>
-                        <option value="1">Реле 2</option>
-                        <option value="2">Реле 3</option>
-                        <option value="3">Реле 4</option>
-                    </select>
+                    <div class="col-md-2">
+                        <label class="float-label-active" for="rfAction868relayNum">
+                            Реле: 
+                        </label>
+                        <select class="form-control" id="rfAction868relayNum">
+                            <option selected value="0">Не выбрано</option>
+                            <option value="0">Реле 1</option>
+                            <option value="1">Реле 2</option>
+                            <option value="2">Реле 3</option>
+                            <option value="3">Реле 4</option>
+                        </select>
+                    </div>
                     <button class="btn btn-danger ml-2" id="btn_868relay_on" onclick="ws_commandRf868(12, 0)">
                         Выключить
                     </button>
@@ -811,8 +822,10 @@
                         <input class="float-input form-control" id="rfAction868Num" type="number" value="0" />
                     </div>
                     <div class="col-md-2">
-                        Тип:
-                        <select id="rfAction868Type">
+                        <label class="float-label-active" for="rfAction868Type">
+                            Тип: 
+                        </label>
+                        <select class="form-control" id="rfAction868Type">
                             <option selected value="3">Не выбрано</option>
                             <option value="0">ШК - протечка</option>
                             <option value="1">Реле - выключатель</option>
@@ -831,9 +844,11 @@
                         </label>
                         <input class="float-input form-control" id="rfAction868IdIf" type="text" value="" />
                     </div>
-
                     <div class="col-md-2">
-                        Реле: <select id="rfAction868relayNum">
+                        <label class="float-label-active" for="rfAction868relayNum">
+                            Реле: 
+                        </label>
+                        <select class="form-control" id="rfAction868relayNum">
                             <option selected value="0">Не выбрано</option>
                             <option value="0">Реле 1</option>
                             <option value="1">Реле 2</option>
@@ -843,8 +858,11 @@
                     </div>
                 </div>
                 <div class="form-row form-group align-items-md-center">
-                    <div class="col-md-2">
-                        Выключатель: <select id="rfAction868switchNum">
+                    <div class="col-md-3">
+                        <label class="float-label-active" for="rfAction868switchNum">
+                            Выключатель: 
+                        </label>
+                        <select class="form-control" id="rfAction868switchNum">
                             <option selected value="0">Не выбрано</option>
                             <option value="0">Выкл 1</option>
                             <option value="1">Выкл 2</option>
@@ -852,7 +870,7 @@
                             <option value="3">Выкл 4</option>
                         </select>
                     </div>
-                    <button class="btn btn-primary" id="btnCreateAction868" onclick="wsCreateRfAction868()">
+                    <button class="btn btn-primary ml-2" id="btnCreateAction868" onclick="wsCreateRfAction868()">
                         Добавить
                     </button>
                 </div>
